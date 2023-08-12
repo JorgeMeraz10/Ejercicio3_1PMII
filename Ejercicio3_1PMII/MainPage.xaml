@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejercicio3_1PMII.MainPage">
+    
+    <StackLayout>
+        <Label Text="Datos del Alumno" />
+        
+        <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" />
+        <Image x:Name="fotoImage" WidthRequest="100" HeightRequest="100" />
+        
+        <Entry Placeholder="Nombres" x:Name="nombresEntry" />
+        <Entry Placeholder="Apellidos" x:Name="apellidosEntry" />
+        <Entry Placeholder="Sexo" x:Name="sexoEntry" />
+        <Entry Placeholder="Direccíon" x:Name="direccionEntry" />
+        
+        <Button Text="Guardar" Clicked="Guardar_Clicked" />
+        <Button Text="Ver Lista" Clicked="ver_Clicked" />
+    </StackLayout>
+
+</ContentPage>
