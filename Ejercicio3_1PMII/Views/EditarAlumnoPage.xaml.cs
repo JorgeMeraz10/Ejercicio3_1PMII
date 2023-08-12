@@ -17,7 +17,7 @@ namespace Ejercicio3_1PMII.Views
         public EditarAlumnoPage()
         {
             InitializeComponent();
-            
+           
             CargarDatos();
         }
 

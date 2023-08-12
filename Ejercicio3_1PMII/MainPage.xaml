@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ejercicio3_1PMII.MainPage">
     
-    <StackLayout>
-        <Label Text="Datos del Alumno" />
+    <StackLayout >
+        <Label Text="Datos del Alumno" HorizontalTextAlignment="Center" FontSize="30"/>
         
-        <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" />
+        <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" BackgroundColor="DeepSkyBlue"/>
         <Image x:Name="fotoImage" WidthRequest="100" HeightRequest="100" />
         
         <Entry Placeholder="Nombres" x:Name="nombresEntry" />
@@ -14,8 +14,8 @@
         <Entry Placeholder="Sexo" x:Name="sexoEntry" />
         <Entry Placeholder="Direccíon" x:Name="direccionEntry" />
         
-        <Button Text="Guardar" Clicked="Guardar_Clicked" />
-        <Button Text="Ver Lista" Clicked="ver_Clicked" />
+        <Button Text="Guardar" Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" />
+        <Button Text="Ver Lista" Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" />
     </StackLayout>
 
 </ContentPage>

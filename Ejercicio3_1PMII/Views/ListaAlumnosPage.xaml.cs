@@ -32,7 +32,7 @@ namespace Ejercicio3_1PMII.Views
         private async void Editar_Clicked(object sender, EventArgs e)
         {
             var alumnoSeleccionado = (Alumnos)((Button)sender).CommandParameter;
-          //  await Navigation.PushAsync(new EditarAlumnoPage(alumnoSeleccionado));
+           // await Navigation.PushAsync(new EditarAlumnoPage(alumnoSeleccionado));
         }
 
         private void Eliminar_Clicked(object sender, EventArgs e)

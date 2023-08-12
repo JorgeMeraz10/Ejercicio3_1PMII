@@ -3,22 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ejercicio3_1PMII.Views.ListaAlumnosPage">
     <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="lstAlumnos">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
 
-        <ListView x:Name="lstAlumnos">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding nombres}" VerticalOptions="CenterAndExpand"/>
-                            <Button Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand"/>
-                            <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding nombres}" VerticalOptions="CenterAndExpand"/>
+                <Button Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue" />
+                <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue"/>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
-    
+
 </ContentPage>
