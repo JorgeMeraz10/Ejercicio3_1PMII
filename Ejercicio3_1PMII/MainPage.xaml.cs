@@ -1,14 +1,10 @@
 ﻿using Ejercicio3_1PMII.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using Ejercicio3_1PMII.Views;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Ejercicio3_1PMII.Views;
+using System;
+using System.IO;
+using Xamarin.Forms;
 
 namespace Ejercicio3_1PMII
 {
@@ -21,43 +17,31 @@ namespace Ejercicio3_1PMII
             InitializeComponent();
         }
 
+        byte[] GuardarImagen;
         private async void TomarFoto_Clicked(object sender, EventArgs e)
         {
+            await CrossMedia.Current.Initialize();
+
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                // La cámara no está disponible en este dispositivo
+                await DisplayAlert("No Cámara", "La cámara no está disponible.", "OK");
                 return;
             }
 
-            var opciones = new StoreCameraMediaOptions
+            var options = new StoreCameraMediaOptions
             {
-                SaveToAlbum = true,
-                Directory = "Pictures", // Cambia el directorio a algo sin espacios
-                Name = "miFoto.jpg"
+                Directory = "MYAPP",
+                    Name = DateTime.Now.ToString() + "_foto.jpg",
+                    SaveToAlbum = true
             };
 
-            try
-            {
-                var foto = await CrossMedia.Current.TakePhotoAsync(opciones);
+            var photo = await CrossMedia.Current.TakePhotoAsync(options);
 
-                if (foto != null)
-                {
-                    using (var stream = foto.GetStream())
-                    {
-                        var memoryStream = new MemoryStream();
-                        stream.CopyTo(memoryStream);
-                        imagenBase64 = Convert.ToBase64String(memoryStream.ToArray());
-                    }
-
-                    fotoImage.Source = ImageSource.FromStream(() => foto.GetStream());
-                }
-            }
-            catch (Exception ex)
+            if (photo != null)
             {
-                DisplayAlert("Error", "La camara no funciona.", "Aceptar");
-            
-                // Manejar la excepción (mostrar un mensaje de error, registrar detalles, etc.).
+                fotoImage.Source = ImageSource.FromStream(() => photo.GetStream());
             }
+
         }
 
         private void Guardar_Clicked(object sender, EventArgs e)

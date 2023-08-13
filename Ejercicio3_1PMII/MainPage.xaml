@@ -7,7 +7,8 @@
         <Label Text="Datos del Alumno" HorizontalTextAlignment="Center" FontSize="30"/>
 
         <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" BackgroundColor="DeepSkyBlue"/>
-        <Image x:Name="fotoImage" WidthRequest="100" HeightRequest="100" />
+        <Image x:Name="fotoImage" Margin="20,0,20,0" HorizontalOptions="Center"/>
+
 
         <Entry Placeholder="Nombres" x:Name="nombresEntry" />
         <Entry Placeholder="Apellidos" x:Name="apellidosEntry" />

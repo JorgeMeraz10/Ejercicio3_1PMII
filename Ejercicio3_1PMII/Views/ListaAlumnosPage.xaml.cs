@@ -1,17 +1,12 @@
 ﻿using Ejercicio3_1PMII.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Ejercicio3_1PMII.Views
 {
-    
+
     public partial class ListaAlumnosPage : ContentPage
     {
         private ObservableCollection<Alumnos> alumnosList = new ObservableCollection<Alumnos>();
@@ -20,7 +15,7 @@ namespace Ejercicio3_1PMII.Views
         {
             InitializeComponent();
             lstAlumnos.ItemsSource = alumnosList;
-             CargarAlumnos();
+            CargarAlumnos();
         }
 
         private void CargarAlumnos()
