@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 
 namespace Ejercicio3_1PMII
 {
@@ -21,12 +23,41 @@ namespace Ejercicio3_1PMII
             InitializeComponent();
         }
 
-        private void TomarFoto_Clicked(object sender, EventArgs e)
+
+        private async void TomarFoto_Clicked(object sender, EventArgs e)
         {
-            // Lógica para tomar una foto y convertirla a Base64
-            // imagenBase64 = ...;
-            fotoImage.Source = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(imagenBase64)));
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                // La cámara no está disponible en este dispositivo
+                return;
+            }
+
+            var opciones = new StoreCameraMediaOptions
+            {
+                SaveToAlbum = true,
+                Directory = "SamplePhotos",  // Cambia el directorio a algo sin espacios
+                Name = "miFoto.jpg"
+            };
+
+            var foto = await CrossMedia.Current.TakePhotoAsync(opciones);
+
+            if (foto != null)
+            {
+                // Convertir la foto a Base64
+                using (var stream = foto.GetStream())
+                {
+                    var memoryStream = new MemoryStream();
+                    stream.CopyTo(memoryStream);
+                    imagenBase64 = Convert.ToBase64String(memoryStream.ToArray());
+                }
+
+                // Mostrar la foto en el Image
+                fotoImage.Source = ImageSource.FromStream(() => foto.GetStream());
+            }
         }
+
+
+
 
         private void Guardar_Clicked(object sender, EventArgs e)
         {
