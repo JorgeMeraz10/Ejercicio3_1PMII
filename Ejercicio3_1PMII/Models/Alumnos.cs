@@ -12,5 +12,6 @@ namespace Ejercicio3_1PMII.Models
         public string Sexo { set; get; }
         public string Direccion { set; get; }
         public string ImagenBase64 { set; get; }
+        
     }
 }

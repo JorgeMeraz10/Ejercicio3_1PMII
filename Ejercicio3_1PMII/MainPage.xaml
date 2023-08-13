@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ejercicio3_1PMII.MainPage">
 
-    <StackLayout >
+    <StackLayout>
         <Label Text="Datos del Alumno" HorizontalTextAlignment="Center" FontSize="30"/>
 
         <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" BackgroundColor="DeepSkyBlue"/>
@@ -14,8 +14,24 @@
         <Entry Placeholder="Sexo" x:Name="sexoEntry" />
         <Entry Placeholder="Direccíon" x:Name="direccionEntry" />
 
-        <Button Text="Guardar" Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" />
-        <Button Text="Ver Lista" Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="https://cdn-icons-png.flaticon.com/128/10057/10057635.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+            <Button Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" Grid.Column="1" Text="Guardar"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="https://images.vexels.com/media/users/3/135932/isolated/lists/5873339dddecea4a26d7366462d0eec6-icono-de-archivo-de-lista-de-verificacion.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+            <Button Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" Grid.Column="1" Text="Ver Lista"/>
+        </Grid>
+
     </StackLayout>
 
 </ContentPage>

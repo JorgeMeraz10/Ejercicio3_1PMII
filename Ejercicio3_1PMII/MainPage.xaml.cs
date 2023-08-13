@@ -1,8 +1,6 @@
 ﻿using Ejercicio3_1PMII.Models;
-using Ejercicio3_1PMII.Views;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,10 +8,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Ejercicio3_1PMII.Views;
 
 namespace Ejercicio3_1PMII
 {
-   
     public partial class MainPage : ContentPage
     {
         private string imagenBase64;
@@ -22,7 +20,6 @@ namespace Ejercicio3_1PMII
         {
             InitializeComponent();
         }
-
 
         private async void TomarFoto_Clicked(object sender, EventArgs e)
         {
@@ -35,29 +32,33 @@ namespace Ejercicio3_1PMII
             var opciones = new StoreCameraMediaOptions
             {
                 SaveToAlbum = true,
-                Directory = "SamplePhotos",  // Cambia el directorio a algo sin espacios
+                Directory = "Pictures", // Cambia el directorio a algo sin espacios
                 Name = "miFoto.jpg"
             };
 
-            var foto = await CrossMedia.Current.TakePhotoAsync(opciones);
-
-            if (foto != null)
+            try
             {
-                // Convertir la foto a Base64
-                using (var stream = foto.GetStream())
-                {
-                    var memoryStream = new MemoryStream();
-                    stream.CopyTo(memoryStream);
-                    imagenBase64 = Convert.ToBase64String(memoryStream.ToArray());
-                }
+                var foto = await CrossMedia.Current.TakePhotoAsync(opciones);
 
-                // Mostrar la foto en el Image
-                fotoImage.Source = ImageSource.FromStream(() => foto.GetStream());
+                if (foto != null)
+                {
+                    using (var stream = foto.GetStream())
+                    {
+                        var memoryStream = new MemoryStream();
+                        stream.CopyTo(memoryStream);
+                        imagenBase64 = Convert.ToBase64String(memoryStream.ToArray());
+                    }
+
+                    fotoImage.Source = ImageSource.FromStream(() => foto.GetStream());
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", "La camara no funciona.", "Aceptar");
+            
+                // Manejar la excepción (mostrar un mensaje de error, registrar detalles, etc.).
             }
         }
-
-
-
 
         private void Guardar_Clicked(object sender, EventArgs e)
         {
@@ -70,13 +71,12 @@ namespace Ejercicio3_1PMII
                 ImagenBase64 = imagenBase64
             };
 
-            // Aqui el Codigo dela conexion de Firebase.
+            // Código para guardar alumnos en Firebase
         }
 
         private async void ver_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ListaAlumnosPage());
         }
-
     }
 }
