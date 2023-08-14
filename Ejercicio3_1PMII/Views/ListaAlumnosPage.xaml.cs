@@ -10,18 +10,28 @@ namespace Ejercicio3_1PMII.Views
     public partial class ListaAlumnosPage : ContentPage
     {
         private ObservableCollection<Alumnos> alumnosList = new ObservableCollection<Alumnos>();
+        private AlumnosService alumnosService;
 
         public ListaAlumnosPage()
         {
             InitializeComponent();
+            alumnosService = new AlumnosService();
+            alumnosList = new ObservableCollection<Alumnos>();
             lstAlumnos.ItemsSource = alumnosList;
             CargarAlumnos();
         }
 
-        private void CargarAlumnos()
+        private async void CargarAlumnos()
         {
             //  insertar el código para cargar la lista de alumnos desde la base de datos (Firebase)
             // y agregarlos a la colección alumnosList.
+
+            alumnosList.Clear();
+            var alumnos = await alumnosService.GetAlumnosAsync();
+            foreach (var alumno in alumnos)
+            {
+                alumnosList.Add(alumno);
+            }
         }
 
         private async void Editar_Clicked(object sender, EventArgs e)

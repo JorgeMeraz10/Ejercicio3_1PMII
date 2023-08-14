@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130285319103",
+    "project_id": "ejercicio3-1pmii",
+    "storage_bucket": "ejercicio3-1pmii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130285319103:android:006f779173cdfd1902670a",
+        "android_client_info": {
+          "package_name": "com.companyname.ejercicio3_1pmii"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130285319103-7hl497hr6l6dcllb36lthrdlrsnn0rc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxtPwubYThBo_5huP4DYr4X-RVKojnhiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130285319103-7hl497hr6l6dcllb36lthrdlrsnn0rc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
