@@ -8,11 +8,15 @@ namespace Ejercicio3_1PMII.Views
     public partial class EditarAlumnoPage : ContentPage
     {
         private Alumnos alumno;
+        private AlumnosService alumnosService;
+
 
         public EditarAlumnoPage(Alumnos alumnoSeleccionado)
         {
             InitializeComponent();
-            alumno = alumnoSeleccionado;
+            this.alumno = alumnoSeleccionado;
+            alumnosService = new AlumnosService();
+           // alumno = alumnoSeleccionado;
             CargarDatos();
         }
 
@@ -36,6 +40,7 @@ namespace Ejercicio3_1PMII.Views
             alumno.Direccion = direccionEntry.Text;
 
             // la actualización en la base de datos, según la estructura de tu proyecto y el servicio de Firebase que estés utilizando.
+            await alumnosService.UpdateAlumnoAsync(alumno);
 
             // Después de guardar los cambios, podrías mostrar un mensaje de éxito o navegar de regreso a la lista de alumnos.
             await DisplayAlert("Éxito", "Los cambios han sido guardados.", "Aceptar");

@@ -2,6 +2,7 @@
 {
     public class Alumnos
     {
+        public string Key { get; set; }
         public int Id { set; get; }
         public string Nombres { set; get; }
         public string Apellidos { set; get; }

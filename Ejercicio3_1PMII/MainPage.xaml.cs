@@ -12,9 +12,12 @@ namespace Ejercicio3_1PMII
     {
         private string imagenBase64;
 
+        private AlumnosService alumnosService;
+
         public MainPage()
         {
             InitializeComponent();
+            alumnosService = new AlumnosService();
         }
 
         byte[] GuardarImagen;
