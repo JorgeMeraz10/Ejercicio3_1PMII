@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace Ejercicio3_1PMII.Models
 {
-    public class AlumnosFB
+    public class AlumnosService
 
     {
         private FirebaseClient firebase;
 
-        public AlumnosFB()
+        public AlumnosService()
         {
+        
             // Reemplaza "tu-proyecto" con el nombre de tu proyecto Firebase
-            firebase = new FirebaseClient("");
+            firebase = new FirebaseClient("https://ejercicio3-1pmii-default-rtdb.firebaseio.com/");
         }
 
         public async Task<List<Alumnos>> GetAlumnosAsync()
