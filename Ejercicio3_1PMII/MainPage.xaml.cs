@@ -11,7 +11,6 @@ namespace Ejercicio3_1PMII
     public partial class MainPage : ContentPage
     {
         private string imagenBase64;
-
         private AlumnosService alumnosService;
 
         public MainPage()
@@ -20,7 +19,17 @@ namespace Ejercicio3_1PMII
             alumnosService = new AlumnosService();
         }
 
-        byte[] GuardarImagen;
+        private string ConvertToBase64(Stream stream)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                stream.CopyTo(ms);
+                byte[] imageBytes = ms.ToArray();
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String;
+            }
+        }
+
         private async void TomarFoto_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -34,23 +43,30 @@ namespace Ejercicio3_1PMII
             var options = new StoreCameraMediaOptions
             {
                 Directory = "MYAPP",
-                    Name = DateTime.Now.ToString() + "_foto.jpg",
-                    SaveToAlbum = true
+                Name = DateTime.Now.ToString("yyyyMMddHHmmss") + "_foto.jpg",
+                SaveToAlbum = true
             };
 
             var photo = await CrossMedia.Current.TakePhotoAsync(options);
 
             if (photo != null)
             {
+                imagenBase64 = ConvertToBase64(photo.GetStream());
                 fotoImage.Source = ImageSource.FromStream(() => photo.GetStream());
             }
-
         }
 
-        private void Guardar_Clicked(object sender, EventArgs e)
+        private async void Guardar_Clicked(object sender, EventArgs e)
         {
+            // Obtener el contador actual desde Firebase
+            int currentCounter = await alumnosService.GetCounterAsync();
+
+            // Incrementar el contador y usarlo como ID
+            int newId = currentCounter + 1;
+
             Alumnos alumnos = new Alumnos
             {
+                Id = newId,
                 Nombres = nombresEntry.Text,
                 Apellidos = apellidosEntry.Text,
                 Sexo = sexoEntry.Text,
@@ -58,8 +74,17 @@ namespace Ejercicio3_1PMII
                 ImagenBase64 = imagenBase64
             };
 
-            // Código para guardar alumnos en Firebase
+            // Guardar el alumno en Firebase
+            await alumnosService.AddAlumnoAsync(alumnos);
+
+            // Actualizar el contador en Firebase con el nuevo valor
+            await alumnosService.UpdateCounterAsync(newId);
+
+            // Mostrar mensaje de éxito
+            await DisplayAlert("Info", "Alumno guardado correctamente", "Ok");
         }
+   
+
 
         private async void ver_Clicked(object sender, EventArgs e)
         {

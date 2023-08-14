@@ -10,6 +10,7 @@ namespace Ejercicio3_1PMII.Views
         private Alumnos alumno;
         private AlumnosService alumnosService;
 
+        private static int lastGeneratedId = 0;
 
         public EditarAlumnoPage(Alumnos alumnoSeleccionado)
         {

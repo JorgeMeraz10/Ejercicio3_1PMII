@@ -10,6 +10,7 @@ namespace Ejercicio3_1PMII.Models
     public class AlumnosService
 
     {
+        private const int V = 0;
         private FirebaseClient firebase;
 
         public AlumnosService()
@@ -32,6 +33,17 @@ namespace Ejercicio3_1PMII.Models
             }).ToList();
         }
 
+        public async Task<int> GetCounterAsync()
+        {
+            var counterSnapshot = await firebase.Child("contador").OnceSingleAsync<int?>();
+            return counterSnapshot ?? 0;
+        }
+
+
+        public async Task UpdateCounterAsync(int newCounterValue)
+        {
+            await firebase.Child("contador").PutAsync(newCounterValue);
+        }
         public async Task AddAlumnoAsync(Alumnos alumno)
         {
             await firebase.Child("alumnos").PostAsync(alumno);
