@@ -6,33 +6,20 @@
     <StackLayout>
         <Label Text="Datos del Alumno" HorizontalTextAlignment="Center" FontSize="30"/>
 
-        <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" BackgroundColor="DeepSkyBlue"/>
-        <Image x:Name="fotoImage" Margin="20,0,20,0" HorizontalOptions="Center"/>
-
+        <StackLayout HorizontalOptions="Center">
+            <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" BackgroundColor="DeepSkyBlue"/>
+            <Image x:Name="fotoImage" Margin="20,0,20,0" HorizontalOptions="Center" HeightRequest="200"/>
+        </StackLayout>
 
         <Entry Placeholder="Nombres" x:Name="nombresEntry" />
         <Entry Placeholder="Apellidos" x:Name="apellidosEntry" />
         <Entry Placeholder="Sexo" x:Name="sexoEntry" />
         <Entry Placeholder="Direccíon" x:Name="direccionEntry" />
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="https://cdn-icons-png.flaticon.com/128/10057/10057635.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
-            <Button Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" Grid.Column="1" Text="Guardar"/>
-        </Grid>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="https://images.vexels.com/media/users/3/135932/isolated/lists/5873339dddecea4a26d7366462d0eec6-icono-de-archivo-de-lista-de-verificacion.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
-            <Button Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" Grid.Column="1" Text="Ver Lista"/>
-        </Grid>
+        <Button Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" Text="Guardar"/>
+        <Button Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" Text="Ver Lista"/>
 
     </StackLayout>
 
 </ContentPage>
+
