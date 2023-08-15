@@ -52,17 +52,26 @@ namespace Ejercicio3_1PMII
             if (photo != null)
             {
                 imagenBase64 = ConvertToBase64(photo.GetStream());
-
                 fotoImage.Source = ImageSource.FromStream(() => photo.GetStream());
+            }
+            else
+            {
+                await DisplayAlert("Foto no tomada", "Por favor tome una foto antes de intentar guardar.", "Ok");
             }
         }
 
         private async void Guardar_Clicked(object sender, EventArgs e)
         {
-            // Obtener el contador actual desde Firebase
-            int currentCounter = await alumnosService.GetCounterAsync();
+            if (string.IsNullOrWhiteSpace(nombresEntry.Text) ||
+                string.IsNullOrWhiteSpace(apellidosEntry.Text) ||
+                string.IsNullOrWhiteSpace(direccionEntry.Text) ||
+                string.IsNullOrWhiteSpace(imagenBase64))
+            {
+                await DisplayAlert("Campos Incompletos", "Por favor complete todos los campos y tome una foto antes de guardar.", "Ok");
+                return;
+            }
 
-            // Incrementar el contador y usarlo como ID
+            int currentCounter = await alumnosService.GetCounterAsync();
             int newId = currentCounter + 1;
 
             Alumnos alumnos = new Alumnos
@@ -70,30 +79,21 @@ namespace Ejercicio3_1PMII
                 Id = newId,
                 Nombres = nombresEntry.Text,
                 Apellidos = apellidosEntry.Text,
-                Sexo = sexoEntry.Text,
+                Sexo = sexoPicker.SelectedItem.ToString(),
                 Direccion = direccionEntry.Text,
                 ImagenBase64 = imagenBase64
             };
 
-            // Guardar el alumno en Firebase
             await alumnosService.AddAlumnoAsync(alumnos);
-
-            // Actualizar el contador en Firebase con el nuevo valor
             await alumnosService.UpdateCounterAsync(newId);
 
-            // Mostrar mensaje de éxito
             await DisplayAlert("Info", "Alumno guardado correctamente", "Ok");
 
-            // Limpiar los campos de entrada
             nombresEntry.Text = "";
             apellidosEntry.Text = "";
-            sexoEntry.Text = "";
             direccionEntry.Text = "";
-            fotoImage.Source = null; //  limpiar la imagen
+            fotoImage.Source = null;
         }
-
-
-
 
         private async void ver_Clicked(object sender, EventArgs e)
         {
@@ -101,3 +101,4 @@ namespace Ejercicio3_1PMII
         }
     }
 }
+

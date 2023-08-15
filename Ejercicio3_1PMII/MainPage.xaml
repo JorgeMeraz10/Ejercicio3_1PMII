@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ejercicio3_1PMII.MainPage">
 
@@ -13,14 +12,19 @@
 
         <Entry Placeholder="Nombres" x:Name="nombresEntry" />
         <Entry Placeholder="Apellidos" x:Name="apellidosEntry" />
-        <Entry Placeholder="Sexo" x:Name="sexoEntry" />
-        <Entry Placeholder="Direccíon" x:Name="direccionEntry" />
+
+        <!-- Reemplazando el campo de sexo con un Picker -->
+        <Picker x:Name="sexoPicker" Title="Seleccione Sexo">
+            <Picker.Items>
+                <x:String>Masculino</x:String>
+                <x:String>Femenino</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Entry Placeholder="Dirección" x:Name="direccionEntry" />
 
         <Button Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" Text="Guardar" HorizontalOptions="Center"/>
         <Button Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" Text="Ver Lista" HorizontalOptions="Center"/>
-
     </StackLayout>
 
 </ContentPage>
-
-

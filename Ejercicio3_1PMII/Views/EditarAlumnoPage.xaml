@@ -9,8 +9,8 @@
             <Entry Placeholder="Apellidos" x:Name="apellidosEntry"/>
             <Entry Placeholder="Sexo" x:Name="sexoEntry"/>
             <Entry Placeholder="Dirección" x:Name="direccionEntry"/>
-            
-            <Button Text="Guardar Cambios" Clicked="GuardarCambios_Clicked"/>
+
+            <Button Text="Guardar Cambios" Clicked="GuardarCambios_Clicked"  BackgroundColor="DeepSkyBlue"/>
            
         </StackLayout>
 

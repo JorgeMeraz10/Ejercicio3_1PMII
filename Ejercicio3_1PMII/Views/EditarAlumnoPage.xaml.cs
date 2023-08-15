@@ -1,6 +1,5 @@
 ﻿using Ejercicio3_1PMII.Models;
 using System;
-
 using Xamarin.Forms;
 
 namespace Ejercicio3_1PMII.Views
@@ -26,25 +25,27 @@ namespace Ejercicio3_1PMII.Views
             direccionEntry.Text = alumno.Direccion;
         }
 
-        // En EditarAlumnoPage.xaml.cs
         private async void GuardarCambios_Clicked(object sender, EventArgs e)
         {
-            // Actualiza las propiedades del objeto alumno con los nuevos valores ingresados por el usuario.
-            alumno.Nombres = nombresEntry.Text;
-            alumno.Apellidos = apellidosEntry.Text;
-            alumno.Sexo = sexoEntry.Text;
-            alumno.Direccion = direccionEntry.Text;
+            bool answer = await DisplayAlert("Confirmar Modificación", "¿Estás seguro de modificar los datos del alumno?", "Sí", "No");
 
-            // Actualiza el alumno en la base de datos.
-            await alumnosService.UpdateAlumnoAsync(alumno);
+            if (answer)
+            {
+                // Actualiza las propiedades del objeto alumno con los nuevos valores ingresados por el usuario.
+                alumno.Nombres = nombresEntry.Text;
+                alumno.Apellidos = apellidosEntry.Text;
+                alumno.Sexo = sexoEntry.Text;
+                alumno.Direccion = direccionEntry.Text;
 
-            // Muestra un mensaje de éxito.
-            await DisplayAlert("Éxito", "Los cambios han sido guardados.", "Aceptar");
+                // Actualiza el alumno en la base de datos.
+                await alumnosService.UpdateAlumnoAsync(alumno);
 
-            // Vuelve a la página anterior.
-            await Navigation.PopAsync();
+                // Muestra un mensaje de éxito.
+                await DisplayAlert("Éxito", "Los cambios han sido guardados.", "Aceptar");
+
+                // Vuelve a la página anterior.
+                await Navigation.PopAsync();
+            }
         }
-
-
     }
 }
