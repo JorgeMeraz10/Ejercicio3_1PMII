@@ -16,10 +16,11 @@
         <Entry Placeholder="Sexo" x:Name="sexoEntry" />
         <Entry Placeholder="Direccíon" x:Name="direccionEntry" />
 
-        <Button Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" Text="Guardar"/>
-        <Button Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" Text="Ver Lista"/>
+        <Button Clicked="Guardar_Clicked" BackgroundColor="DeepSkyBlue" Text="Guardar" HorizontalOptions="Center"/>
+        <Button Clicked="ver_Clicked" BackgroundColor="DeepSkyBlue" Text="Ver Lista" HorizontalOptions="Center"/>
 
     </StackLayout>
 
 </ContentPage>
+
 

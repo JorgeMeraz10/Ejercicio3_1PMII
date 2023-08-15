@@ -43,11 +43,28 @@ namespace Ejercicio3_1PMII.Views
             await Navigation.PushAsync(new EditarAlumnoPage(alumnoSeleccionado));
         }
 
+
         private async void Eliminar_Clicked(object sender, EventArgs e)
         {
             var alumnoSeleccionado = (Alumnos)((Button)sender).CommandParameter;
-            await alumnosService.DeleteAlumnoAsync(alumnoSeleccionado.Key);
-            alumnosList.Remove(alumnoSeleccionado);
+
+            bool respuesta = await DisplayAlert("Confirmación", "¿Estás seguro que deseas eliminar este alumno?", "Sí", "No");
+
+            if (respuesta)
+            {
+                // Si el usuario selecciona "Sí", procede a eliminar el alumno
+                try
+                {
+                    await alumnosService.DeleteAlumnoAsync(alumnoSeleccionado.Key);
+                    alumnosList.Remove(alumnoSeleccionado);
+                }
+                catch (Exception ex)
+                {
+                    // Manejar cualquier error aquí
+                    Console.WriteLine("Error al eliminar el alumno: " + ex.Message);
+                }
+            }
         }
     }
 }
+

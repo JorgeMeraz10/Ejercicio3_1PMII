@@ -8,12 +8,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Imagen}" WidthRequest="100" HeightRequest="100" />
-                                <Label Text="{Binding Nombres}" VerticalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding Apellidos}" VerticalOptions="CenterAndExpand"/>
-                                <Button Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue" />
-                                <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue"/>
+                            <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="CenterAndExpand">
+                                <Image Source="{Binding Imagen}" WidthRequest="80" HeightRequest="80" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Nombres}" VerticalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding Apellidos}" VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Button Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}" BackgroundColor="DeepSkyBlue" WidthRequest="80" HeightRequest="40" />
+                                    <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" BackgroundColor="DarkRed" WidthRequest="80" HeightRequest="40" />
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -22,3 +26,5 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+
+

@@ -65,7 +65,6 @@ namespace Ejercicio3_1PMII
             // Incrementar el contador y usarlo como ID
             int newId = currentCounter + 1;
 
-
             Alumnos alumnos = new Alumnos
             {
                 Id = newId,
@@ -84,8 +83,16 @@ namespace Ejercicio3_1PMII
 
             // Mostrar mensaje de éxito
             await DisplayAlert("Info", "Alumno guardado correctamente", "Ok");
+
+            // Limpiar los campos de entrada
+            nombresEntry.Text = "";
+            apellidosEntry.Text = "";
+            sexoEntry.Text = "";
+            direccionEntry.Text = "";
+            fotoImage.Source = null; //  limpiar la imagen
         }
-   
+
+
 
 
         private async void ver_Clicked(object sender, EventArgs e)
