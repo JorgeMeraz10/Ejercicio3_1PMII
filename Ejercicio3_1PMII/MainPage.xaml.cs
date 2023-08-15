@@ -52,6 +52,7 @@ namespace Ejercicio3_1PMII
             if (photo != null)
             {
                 imagenBase64 = ConvertToBase64(photo.GetStream());
+
                 fotoImage.Source = ImageSource.FromStream(() => photo.GetStream());
             }
         }
@@ -63,6 +64,7 @@ namespace Ejercicio3_1PMII
 
             // Incrementar el contador y usarlo como ID
             int newId = currentCounter + 1;
+
 
             Alumnos alumnos = new Alumnos
             {

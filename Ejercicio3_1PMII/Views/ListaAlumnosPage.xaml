@@ -8,18 +8,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Imagen}" WidthRequest="100" HeightRequest="100" />
+                                <Label Text="{Binding Nombres}" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Apellidos}" VerticalOptions="CenterAndExpand"/>
+                                <Button Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue" />
+                                <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding nombres}" VerticalOptions="CenterAndExpand"/>
-                <Button Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue" />
-                <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" VerticalOptions="CenterAndExpand" BackgroundColor="DeepSkyBlue"/>
-            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-
 </ContentPage>

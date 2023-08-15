@@ -49,10 +49,22 @@ namespace Ejercicio3_1PMII.Models
             await firebase.Child("alumnos").PostAsync(alumno);
         }
 
+        // En AlumnosService.cs
         public async Task UpdateAlumnoAsync(Alumnos alumno)
         {
-            await firebase.Child("alumnos").Child(alumno.Key).PutAsync(alumno);
+            var child = firebase.Child("alumnos").Child(alumno.Key);
+
+            await child.PutAsync(new Alumnos
+            {
+                Nombres = alumno.Nombres,
+                Apellidos = alumno.Apellidos,
+                Sexo = alumno.Sexo,
+                Direccion = alumno.Direccion,
+                ImagenBase64 = alumno.ImagenBase64
+            });
         }
+
+
 
         public async Task DeleteAlumnoAsync(string alumnoKey)
         {

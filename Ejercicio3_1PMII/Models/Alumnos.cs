@@ -1,4 +1,6 @@
-﻿namespace Ejercicio3_1PMII.Models
+﻿using Xamarin.Forms;
+
+namespace Ejercicio3_1PMII.Models
 {
     public class Alumnos
     {
@@ -9,6 +11,6 @@
         public string Sexo { set; get; }
         public string Direccion { set; get; }
         public string ImagenBase64 { set; get; }
-
+        public ImageSource Imagen { get; internal set; }
     }
 }
